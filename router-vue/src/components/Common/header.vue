@@ -3,15 +3,15 @@
     <el-row type="flex" justify="end" v-if="!isLogin">
       <el-col :span="3" style="line-height: 60px; text-align: right; padding-right: 10px;">123456@qq.com</el-col>
       <el-col :span="3" style="line-height: 60px;">
-        <el-link to="">退出登录</el-link>
+        <router-link to="">退出登录</router-link>
       </el-col>
     </el-row>
     <el-row type="flex" justify="end" v-else>
       <el-col :span="1" style="line-height: 50px; text-align: right; padding-right: 16px;">
-        <el-link to="">登录</el-link>
+        <router-link to=""><span @click="login">登录</span></router-link>
       </el-col>
       <el-col :span="3" style="line-height: 50px;">
-        <el-link to="">注册</el-link>
+        <router-link to=""><span @click="login">注册</span></router-link>
       </el-col>
     </el-row>
   </div>
@@ -21,8 +21,18 @@
 export default {
   data () {
       return {
-          isLogin: false
+          isLogin: true
       }
+  },
+  methods: {
+    login () {
+      let token = window.localStorage.getItem('token')
+      if(token) {
+        window.location.href= '/news'
+      }else{
+        window.location.href= 'http://localhost:3000/welcome.html'
+      }
+    }
   }
 }
 </script>

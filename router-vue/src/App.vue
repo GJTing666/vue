@@ -42,7 +42,7 @@ export default {
 }
 
 .content-left {
-  width: 14%;
+  width: 14.9%;
   float: left;
 }
 

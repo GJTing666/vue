@@ -14,7 +14,9 @@ import Liuyan from '@/components/Dynamic/liuyan.vue'
 import Tech from '@/components/Dynamic/tech.vue'
 import Pro from '@/components/Dynamic/pro.vue'
 import Detail from '@/components/Index/detail.vue'
-import Add from '@/components/Dynamic/add.vue'
+import User from '@/components/Dynamic/usercenter.vue'
+import Store from '@/components/Index/store.vue'
+import goodList from '@/components/Index/index.vue'
 
 Vue.use(VueRouter)
 
@@ -25,6 +27,9 @@ export default new VueRouter({
     components: {
       default: News
     }
+  }, {
+    path: '/goodList',
+    component: goodList
   }, {
     path: '/dynamic',
     component: Dynamic,
@@ -37,7 +42,10 @@ export default new VueRouter({
       component: Tech
     }, {
       path: '/dynamic/pro',
-      component: Pro
+      component: Pro,
+      meta: {
+        requireUser: true
+      }
     }]
   }, {
     path: '/news',
@@ -51,5 +59,30 @@ export default new VueRouter({
   }, {
     path: '/detail/:id',
     component: Detail
+  }, {
+    path: '/usercenter',
+    component: User,
+    meta: {
+      requireUser: 1
+    }
+    // 路由守卫
+    /*beforeEnter: (to, from, next) => {
+      // console.log(to, from)
+      let token = window.localStorage.getItem('token')
+      if(token){
+        next()
+      } else {
+        next('/')
+      }
+    }*/
+  }, {
+    path: '/login',
+    component: Tech,
+    meta: {
+      requireUser: 2
+    }
+  }, {
+    path: '/store',
+    component: Store
   }]
 })

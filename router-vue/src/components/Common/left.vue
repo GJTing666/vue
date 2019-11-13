@@ -12,7 +12,9 @@
       <li><router-link to="/news">集团新闻</router-link></li>
       <li><router-link to="/dynamic">业务动态</router-link></li>
       <li><router-link to="/video">星河视频</router-link></li>
+      <li><router-link to="/goodList">商品列表</router-link></li>
       <li><router-link to="/liuyan">留言</router-link></li>
+      <li><router-link to="/usercenter">个人中心</router-link></li>
     </ul>
   </div>
 </template>

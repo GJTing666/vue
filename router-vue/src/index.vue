@@ -21,8 +21,6 @@ import Top from '@/components/Common/Top.vue'
 
 import Banner from '@/components/Index/banner.vue'
 
-// import News from '@/components/Index/news.vue'
-
 import Left from '@/components/Common/left.vue'
 
 export default {
@@ -31,7 +29,6 @@ export default {
     Banner,
     Header,
     Left
-    // News
   }
 }
 </script>

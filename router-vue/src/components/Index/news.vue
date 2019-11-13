@@ -1,12 +1,14 @@
 <template>
   <el-col :span="24" class="g_lists">
     <add :getNewsData="getNewsData"></add>
-    <el-col :span="4">
-      <el-input v-model="input" placeholder="请输入搜索内容" :changeValue="changeValue" clearable></el-input>
-    </el-col>
-    <el-col :span="2" style="text-align:right;">
-      <el-button type="primary">查 询</el-button>
-    </el-col>
+    <div style="padding-top:12px;">
+      <el-col :span="4">
+        <el-input v-model="input" placeholder="请输入搜索内容" :changeValue="changeValue" clearable></el-input>
+      </el-col>
+      <el-col :span="2" style="text-align:right;">
+        <el-button type="primary">查 询</el-button>
+      </el-col>
+    </div>
     <el-table :data="lists" style="width: 100%">
         <el-table-column prop="title" label="标题"></el-table-column>
         <el-table-column prop="content" label="内容"></el-table-column>
@@ -87,6 +89,15 @@ export default {
             }
             this.lists = lists
             // console.log(this.lists)
+            if (this.lists.length >= 1) {
+              this.$message({
+                showClose: true,
+                message: '查询到'+this.lists.length+'条数据',
+                type: 'success'
+              })
+            }else{
+              this.$message.error('未找到您查询的信息')
+            }
           }
         }).catch((err) => {
           console.log(err)

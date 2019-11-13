@@ -1,19 +1,19 @@
 <template>
   <!-- <el-header>神秘岛</el-header> -->
   <el-col class="main-box " :span="20">
-    <div style="display:-webkit-box;" class="clearfix">
-      <el-main style="width:100%;">
-        <div class="banner-box">
-          <el-carousel :interval="4000" type="card" height="280px">
-            <el-carousel-item v-for="img in imgs" :key="img">
-              <h3 class="medium">
-                <img :src="img" alt="banner" />
-              </h3>
-            </el-carousel-item>
-          </el-carousel>
-        </div>
-      </el-main>
-    </div>
+    <!--<div style="display:-webkit-box;" class="clearfix">-->
+      <!--<el-main style="width:100%;">-->
+        <!--<div class="banner-box">-->
+          <!--<el-carousel :interval="4000" type="card" height="280px">-->
+            <!--<el-carousel-item v-for="img in imgs" :key="img">-->
+              <!--<h3 class="medium">-->
+                <!--<img :src="img" alt="banner" />-->
+              <!--</h3>-->
+            <!--</el-carousel-item>-->
+          <!--</el-carousel>-->
+        <!--</div>-->
+      <!--</el-main>-->
+    <!--</div>-->
     <el-col :span="24" class="g_lists">
       <el-table
         :data="lists"
@@ -76,7 +76,7 @@ export default {
   mounted () {
     axios ({
       method: 'get',
-      url: 'http://192.168.97.229:3000/lists',
+      url: 'http://192.168.97.229:3001/lists',
     }).then((res) => {
       res = res.data
       if (res.status === true) {

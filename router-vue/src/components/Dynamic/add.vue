@@ -1,5 +1,5 @@
 <template>
-  <el-col :span="24" class="btn-cont">
+  <el-col :span="2" class="btn-cont">
     <el-col :span="2" style="text-align:right;">
       <el-button type="primary" @click="dialogFormVisible = true">新 增</el-button>
       <el-dialog title="添加新闻" :visible.sync="dialogFormVisible">
@@ -68,13 +68,25 @@ export default {
         responseType: 'stream'
       }).then((res) => {
         if (res.status === 200) {
+          // 插件：消息提示
+          this.$message({
+            message: '提交成功',
+            type: 'success'
+          })
           this.getNewsData()
         }
         console.log(res)
       }).catch((err) => {
         console.log(err)
       })
-    }
+    },
+    // 消息提示
+    // skip () {
+    //   this.$message({
+    //       message: '提交成功',
+    //       type: 'success'
+    //     })
+    // }
   }
 }
 </script>
@@ -83,6 +95,7 @@ export default {
   .btn-cont {
     line-height: 60px;
     padding-left: 10px;
+    margin-right: 10px;
   }
   .el-dialog__header::after {
     content: '';
