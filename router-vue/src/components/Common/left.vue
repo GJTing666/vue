@@ -15,6 +15,7 @@
       <li><router-link to="/goodList">商品列表</router-link></li>
       <li><router-link to="/liuyan">留言</router-link></li>
       <li><router-link to="/usercenter">个人中心</router-link></li>
+      <li><router-link to="/userlists">用户列表</router-link></li>
     </ul>
   </div>
 </template>

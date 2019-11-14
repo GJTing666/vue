@@ -31,9 +31,17 @@
           label="库存">
         </el-table-column>
         <el-table-column
+          label="总价">
+          <template slot-scope="scope">
+            <div>
+              {{scope.row.price * scope.row.stock}}
+            </div>
+          </template>
+        </el-table-column>
+        <!--<el-table-column
           prop="img"
           label="商品图片">
-        </el-table-column>
+        </el-table-column>-->
         <el-table-column
           fixed="right"
           label="操作">
@@ -47,13 +55,14 @@
           </template>
         </el-table-column>
       </el-table>
+      <div>
+        总价： {{total}}
+      </div>
     </el-col>
   </el-col>
 </template>
 
 <script>
-import axios from 'axios'
-// console.log(axios)
 import img1 from "@/assets/banner1.jpg"
 import img2 from "@/assets/banner2.jpg"
 import img3 from "@/assets/banner3.jpg"
@@ -63,26 +72,33 @@ import img5 from "@/assets/banner5.jpg"
 export default {
   methods: {
     deleteRow(index, rows) {
-      console.log(index)
-        rows.splice(index, 1);
-      }
+      // console.log(index)
+      rows.splice(index, 1)
+    }
   },
   data() {
     return {
       imgs: [img1, img2, img3, img4, img5],
-      lists: []
     }
   },
-  mounted () {
-    axios ({
-      method: 'get',
-      url: 'http://192.168.97.229:3001/lists',
-    }).then((res) => {
-      res = res.data
-      if (res.status === true) {
-        this.lists = res.data
-      }
-    })
+  // 实时监听事件活动
+  computed: {
+    // 里面的lists、total虽然是以方法的形式写，其实相当于data下面return的lists、total值
+    // 渲染的lists数据 其值为可表示为lists=[$store.state.lists]
+    // 然后把lists中的数据渲染出来
+    lists () {
+      return this.$store.state.gLists
+    },
+    // 拿到$store.getters.total的数据，在渲染出来
+    total () {
+      return this.$store.getters.total
+    }
+  },
+  // 页面加载完成之后做的事
+  mounted() {
+    // this.$store.dispatch('getLists',一个参数/{多个参数})
+    // 触发获取good的方法
+    this.$store.dispatch('getLists')
   }
 }
 </script>
@@ -99,10 +115,6 @@ export default {
 
 .el-table .cell {
   text-align: center;
-}
-
-.main-box {
-  border-left: 1px solid #ccc;
 }
 
 .el-main {

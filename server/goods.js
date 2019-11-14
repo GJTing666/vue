@@ -34,7 +34,7 @@ app.all('*', function(req, res, next){
 // 从数据库获取goods表中的数据并返回到接口数据中
 app.get('/lists', function (req, res) {
     // 查询数据库数据
-    connection.query('select * from goods', function (err, data) {
+    /*connection.query('select * from goods', function (err, data) {
         if (!err) {
             // 返回接口数据，并结束接口请求
             res.json({
@@ -47,10 +47,18 @@ app.get('/lists', function (req, res) {
                 data: []
             })
         }
+    })*/
+    res.json({
+        status: 200,
+        data: [{
+            name: '守柴炉烤鸭',
+            price: '456.00',
+            stock: '132'
+        }]
     })
 })
 
-// 获取商品分类列表
+/*// 获取商品分类列表
 app.get('/class', function(req,res){
     connection.query('select * from classify', function(err, data){
         if(!err){
@@ -96,7 +104,7 @@ app.post('/addgoods', function(req, res){
             }
         })
     })
-})
+})*/
 
 console.log('port:' + 3001);
 app.listen(3001)

@@ -17,6 +17,8 @@ import Detail from '@/components/Index/detail.vue'
 import User from '@/components/Dynamic/usercenter.vue'
 import Store from '@/components/Index/store.vue'
 import goodList from '@/components/Index/index.vue'
+import Aside from '@/components/Common/aside.vue'
+import userLists from '@/user/user.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +32,12 @@ export default new VueRouter({
   }, {
     path: '/goodList',
     component: goodList
+  }, {
+    path: '/aside',
+    component: Aside
+  }, {
+    path: '/userlists',
+    component: userLists
   }, {
     path: '/dynamic',
     component: Dynamic,
