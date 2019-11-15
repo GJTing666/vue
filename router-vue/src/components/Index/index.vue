@@ -1,6 +1,6 @@
 <template>
   <!-- <el-header>神秘岛</el-header> -->
-  <el-col class="main-box " :span="20">
+  <el-col class="main-box " :span="24">
     <!--<div style="display:-webkit-box;" class="clearfix">-->
       <!--<el-main style="width:100%;">-->
         <!--<div class="banner-box">-->
@@ -16,7 +16,7 @@
     <!--</div>-->
     <el-col :span="24" class="g_lists">
       <el-table
-        :data="lists"
+        :data="foods"
         style="width: 100%">
         <el-table-column
           prop="name"
@@ -46,18 +46,34 @@
           fixed="right"
           label="操作">
           <template slot-scope="scope">
-            <el-button
-              @click.native.prevent="deleteRow(scope.$index, lists)"
-              type="text"
-              size="small">
-              移除
-            </el-button>
+            <div>
+              <!--
+              @del="del"
+              del 是一个事件名，跟click一样 click触发方法是点击
+              del的触发方法是通过$emit('del')触发
+
+              vue-router vuex  组件传值
+
+              组件之间传值方式：
+              1、父传子
+                在父组件调用子组件的地方绑定属性 将数据绑定上去
+                在子组件中用props接收
+              2、子传父
+                通过方法传参的方式传值
+                1）自定义事件
+                  在父组件调用子组件的标签上添加自定义事件
+                  在子组件中通过$emit触发
+                2) 通过属性绑定方法
+              3、平级之间传值
+              -->
+              <Handle @del="del" :index="scope.$index" :delArr="delArr" aa="asdasd" :id="scope.row.id"></Handle>
+            </div>
           </template>
         </el-table-column>
       </el-table>
-      <div>
-        总价： {{total}}
-      </div>
+      <!--<div>-->
+        <!--总价： {{total}}-->
+      <!--</div>-->
     </el-col>
   </el-col>
 </template>
@@ -68,17 +84,29 @@ import img2 from "@/assets/banner2.jpg"
 import img3 from "@/assets/banner3.jpg"
 import img4 from "@/assets/banner4.jpg"
 import img5 from "@/assets/banner5.jpg"
+import Handle from './handle'
 
 export default {
-  methods: {
-    deleteRow(index, rows) {
-      // console.log(index)
-      rows.splice(index, 1)
-    }
-  },
+  components: {Handle},
   data() {
     return {
       imgs: [img1, img2, img3, img4, img5],
+      foods: [{
+            id: 1,
+            name: '守柴炉烤鸭',
+            price: '250.00',
+            stock: '45'
+        }, {
+            id: 2,
+            name: '九七烤鱼',
+            price: '45.00',
+            stock: '23'
+        }, {
+            id: 3,
+            name: '干锅牛肉',
+            price: '85.00',
+            stock: '99'
+        }]
     }
   },
   // 实时监听事件活动
@@ -99,6 +127,12 @@ export default {
     // this.$store.dispatch('getLists',一个参数/{多个参数})
     // 触发获取good的方法
     this.$store.dispatch('getLists')
+  },
+  methods: {
+    del (index) {
+      console.log(index)
+      this.foods.splice(index, 1)
+    }
   }
 }
 </script>

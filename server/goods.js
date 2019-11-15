@@ -51,9 +51,20 @@ app.get('/lists', function (req, res) {
     res.json({
         status: 200,
         data: [{
+            id: 1,
             name: '守柴炉烤鸭',
-            price: '456.00',
-            stock: '132'
+            price: '50.00',
+            stock: '15'
+        }, {
+            id: 2,
+            name: '九七烤鱼',
+            price: '45.00',
+            stock: '23'
+        }, {
+            id: 3,
+            name: '干锅牛肉',
+            price: '85.00',
+            stock: '99'
         }]
     })
 })

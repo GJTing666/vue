@@ -1,10 +1,34 @@
 // 存储数据
 
 // 在组件中，store中的数据是共同的，所有组件都可以访问vue中的数据
+// vuex就是一个状态管理器
+
+/**
+ * 1.不使用命名空间的方法
+ * ...mapstate({
+ *     state名：state => state.模块名.state名
+ * })
+ *
+ * ...mapActions([actions中的方法名])
+ *
+ * 2.使用命名空间
+ * ...mapstate('命名空间名/模块名',{
+ *     state名：state => state.state名
+ * })
+ *
+ * 3.使用createNamespacedHelpers定义命名空间
+ *  import {mapState, createNamespacedHelpers} from 'vuex'
+ *
+ *  解构 创建属于order的命名空间
+ *  let {mapMutations} = createNamespacedHelpers('模块名/命名空间名')
+ *  ...mapActions([actions中的方法名])
+ *
+ * */
+
 import Vuex from 'vuex'
 import Vue from 'vue'
 import axios from 'axios'
-
+import order from './order'
 
 Vue.use(Vuex)
 
@@ -23,7 +47,6 @@ let store = new Vuex.Store({
       state.value = data
     },
     changeGoodLits (state, data) {
-      console.log(data)
       // 把请求传过来的数据传到state中的lists空数组里面
       state.gLists = data
     },
@@ -35,7 +58,7 @@ let store = new Vuex.Store({
   actions: {
     getLists (gLists) {
       // console.log(gLists)
-      axios ({
+      /*axios ({
         method: 'get',
         url: 'http://192.168.97.229:3001/lists',
       }).then((res) => {
@@ -43,10 +66,10 @@ let store = new Vuex.Store({
           // 把请求返回的数据传给changeGoodLits
           gLists.commit('changeGoodLits', res.data.data)
         }
-      })
+      })*/
     },
     getUserLists (uLists) {
-      axios ({
+      /*axios ({
         method: 'get',
         url: 'http://192.168.97.229:300/lists',
       }).then((res) => {
@@ -54,7 +77,7 @@ let store = new Vuex.Store({
           // 把请求返回的数据传给changeGoodLits
           uLists.commit('changeULits', res.data.data)
         }
-      })
+      })*/
     }
   },
 
@@ -68,6 +91,11 @@ let store = new Vuex.Store({
       }
       return total
     }
+  },
+
+  modules: {
+    // 模块名称：这个模块中的状态管理
+    order: order
   }
 })
 

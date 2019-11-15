@@ -19,6 +19,7 @@ import Store from '@/components/Index/store.vue'
 import goodList from '@/components/Index/index.vue'
 import Aside from '@/components/Common/aside.vue'
 import userLists from '@/user/user.vue'
+import Order from '@/components/order/index.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,9 @@ export default new VueRouter({
     components: {
       default: News
     }
+  }, {
+    path: '/order',
+    component: Order
   }, {
     path: '/goodList',
     component: goodList
